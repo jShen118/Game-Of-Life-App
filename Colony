@@ -1,14 +1,22 @@
-struct Colony: CustomStringConvertible {
+struct Colony: CustomStringConvertible, Identifiable {
     private (set) var name: String = "No Name"
     private (set) var generationNumber = 0
+    var id: Int
+    static var nextID = 0
     let size: Int
     var oldCoors = Set<Coordinate>()
     var newCoors = Set<Coordinate>()
     
     init(_ name: String, _ size: Int = 10, _ coors: [Coordinate] = [Coordinate]()) {
+        self.id = Colony.nextID
         self.name = name
         self.size = size
         self.oldCoors = Set(coors)
+        Colony.nextID += 1
+    }
+    
+    func convertToCoordinates(_ x: Double, _ y: Double)-> Coordinate {
+        return Coordinate(Int(x/11.666667), Int(y/11.666667))
     }
     
     mutating func setColonyFromCoors(_ cells: [Coordinate]) {
@@ -19,11 +27,15 @@ struct Colony: CustomStringConvertible {
         oldCoors = Set<Coordinate>()
         newCoors = Set<Coordinate>()
     }
-    mutating func setCellAlive(_ row: Int, _ col: Int) {
-        oldCoors.insert(Coordinate(row, col))
+    mutating func setCellAlive(_ c: Coordinate) {
+        oldCoors.insert(c)
     }
-    mutating func setCellDead(_ row: Int, _ col: Int) {
-        oldCoors.remove(Coordinate(row, col))
+    mutating func setCellDead(_ c: Coordinate) {
+        oldCoors.remove(c)
+    }
+    mutating func toggleLife(_ c: Coordinate) {
+        if isCellAlive(c) {setCellDead(c)}
+        else {setCellAlive(c)}
     }
     func isCellAlive(_ c: Coordinate)-> Bool {
         return oldCoors.contains(c)
@@ -137,5 +149,7 @@ extension Colony {
         return oldCoors.intersection(surroundingCoors).count
     }
 }
+
+
 
 
