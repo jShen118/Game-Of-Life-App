@@ -11,10 +11,14 @@ struct ColonyView: View {
     @State var isEvolving = false
     @State var wrap = false
     
-
-    
     var body: some View {
         VStack {
+            if colony.name == "Enter New Colony Name" {
+                TextField("", text: self.$colony.name)
+                    .foregroundColor(.gray)
+            } else {
+                TextField("", text: self.$colony.name)
+            }
             VStack(spacing: 0) {
                 ForEach(0..<60) { row in
                     HStack(spacing: 0) {
@@ -50,4 +54,3 @@ struct ColonyView: View {
         }
     }
 }
-
