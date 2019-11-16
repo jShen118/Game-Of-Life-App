@@ -34,24 +34,30 @@ struct MainView : View {
         ]),
     ]
     @State var currentID = 0
+    @State var newName = ""
 
     var body: some View {
-        HStack {
-            ColonyList(colonyData: $colonyData, currentID: $currentID)
-            ColonyView(colony: $colonyData[currentID])
-            .frame(width: 700, height: 700)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        if !self.colonyData[self.currentID].isCellAlive(self.convertToCoordinates(Double(value.location.x), Double(value.location.y))) {
-                            self.colonyData[self.currentID].setCellAlive(self.convertToCoordinates(Double(value.location.x), Double(value.location.y)))
+        GeometryReader { geometry in
+            HStack {
+                ColonyList(colonyData: self.$colonyData, currentID: self.$currentID)
+                    .frame(width: geometry.size.width / 4, height: geometry.size.height)
+                Spacer()
+                ColonyView(colony: self.$colonyData[self.currentID])
+                    .offset(x: -185, y: 0)
+                .frame(width: 500, height: 500)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            if !self.colonyData[self.currentID].isCellAlive(self.convertToCoordinates(Double(value.location.y), Double(value.location.x))) {
+                                self.colonyData[self.currentID].setCellAlive(self.convertToCoordinates(Double(value.location.y), Double(value.location.x)))
+                            }
                         }
-                    }
-            )
+                )
+            }
         }
     }
     
     func convertToCoordinates(_ x: Double, _ y: Double)-> Coordinate {
-        return Coordinate(Int(x/11.666667), Int(y/11.666667))
+        return Coordinate(Int(x/8.3333333), Int(y/8.3333333))
     }
 }
