@@ -1,0 +1,15 @@
+import SwiftUI
+
+struct ColonyList: View {
+    @Binding var colonyData: [Colony]
+    @Binding var currentID: Int
+    
+    var body: some View {
+        List {
+            ForEach(0..<colonyData.count) { index in
+                ColonyRow(colony: self.$colonyData[index])
+                    .onTapGesture {self.currentID = index}
+            }
+        }
+    }
+}
