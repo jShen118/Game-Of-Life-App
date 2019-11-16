@@ -1,12 +1,13 @@
+import SwiftUI
+import Foundation
+import Combine
+
 struct ColonyView: View {
-    @State private var colony = Colony("name", 10,
-        [Coordinate(5,5),
-        Coordinate(5,6),
-        Coordinate(5,7),
-        Coordinate(6,6)
-    ])
-    //@State var evolveTime = 1
-    @State var evolutionTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @Binding var colony: Colony
+    @State var evolveTime = 1.0
+    var evolutionTimer: Publishers.Autoconnect<Timer.TimerPublisher> {
+        return Timer.publish(every: TimeInterval(evolveTime), on: .main, in: .common).autoconnect()
+    }
     @State var isEvolving = false
     @State var wrap = false
     
@@ -14,25 +15,25 @@ struct ColonyView: View {
     
     var body: some View {
         VStack {
-            GeometryReader { geometry in
-                VStack(spacing: 0) {
-                    ForEach(0..<10) { row in
-                        HStack(spacing: 0) {
-                            ForEach(0..<10) { col in
-                                if self.colony.isCellAlive(Coordinate(row, col)) {
-                                    Rectangle().fill(Color.green)
-                                        //.frame(width: geometry.size.height / 10, height: geometry.size.height / 10)
-                                        .border(Color.black, width: 1)
-                                } else {
-                                    Rectangle().fill(Color.red)
-                                        //.frame(width: geometry.size.height / 10, height: geometry.size.height / 10)
-                                        .border(Color.black, width: 1)
-                                }
+            VStack(spacing: 0) {
+                ForEach(0..<60) { row in
+                    HStack(spacing: 0) {
+                        ForEach(0..<60) { col in
+                            if self.colony.isCellAlive(Coordinate(row, col)) {
+                                Rectangle().fill(Color.green)
+                                    .frame(width: 10, height: 10)
+                                    .padding(1)
+                                    .onTapGesture {self.colony.toggleLife(Coordinate(row, col))}
+                            } else {
+                                Rectangle().fill(Color.red)
+                                    .frame(width: 10, height: 10)
+                                    .padding(1)
+                                    .onTapGesture {self.colony.toggleLife(Coordinate(row, col))}
                             }
                         }
                     }
-                }.drawingGroup()
-            }
+                }
+            }.drawingGroup()
             .onReceive(evolutionTimer) {_ in
                 if self.isEvolving {
                     if self.wrap {self.colony.evolveWrap()}
@@ -43,9 +44,10 @@ struct ColonyView: View {
                 Button(action: {self.isEvolving.toggle()}) {
                     Text("Evolve")
                 }
-                //Slider(value: $)
+                Slider(value: $evolveTime, in: 0.1...2, step: 0.05)
                 Toggle(isOn: $wrap) {EmptyView()}
             }
         }
     }
 }
+
