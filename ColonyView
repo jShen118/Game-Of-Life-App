@@ -1,0 +1,51 @@
+struct ColonyView: View {
+    @State private var colony = Colony("name", 10,
+        [Coordinate(5,5),
+        Coordinate(5,6),
+        Coordinate(5,7),
+        Coordinate(6,6)
+    ])
+    //@State var evolveTime = 1
+    @State var evolutionTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var isEvolving = false
+    @State var wrap = false
+    
+
+    
+    var body: some View {
+        VStack {
+            GeometryReader { geometry in
+                VStack(spacing: 0) {
+                    ForEach(0..<10) { row in
+                        HStack(spacing: 0) {
+                            ForEach(0..<10) { col in
+                                if self.colony.isCellAlive(Coordinate(row, col)) {
+                                    Rectangle().fill(Color.green)
+                                        //.frame(width: geometry.size.height / 10, height: geometry.size.height / 10)
+                                        .border(Color.black, width: 1)
+                                } else {
+                                    Rectangle().fill(Color.red)
+                                        //.frame(width: geometry.size.height / 10, height: geometry.size.height / 10)
+                                        .border(Color.black, width: 1)
+                                }
+                            }
+                        }
+                    }
+                }.drawingGroup()
+            }
+            .onReceive(evolutionTimer) {_ in
+                if self.isEvolving {
+                    if self.wrap {self.colony.evolveWrap()}
+                    else {self.colony.evolve()}
+                }
+            }
+            HStack {
+                Button(action: {self.isEvolving.toggle()}) {
+                    Text("Evolve")
+                }
+                //Slider(value: $)
+                Toggle(isOn: $wrap) {EmptyView()}
+            }
+        }
+    }
+}
