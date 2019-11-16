@@ -5,13 +5,13 @@ struct Colony: CustomStringConvertible {
     var oldCoors = Set<Coordinate>()
     var newCoors = Set<Coordinate>()
     
-    init(_ size: Int = 10) {
+    init(_ size: Int = 10, _ coors: [Coordinate] = [Coordinate]()) {
         self.size = size
+        self.oldCoors = Set(coors)
     }
     
     mutating func setColonyFromCoors(_ cells: [Coordinate]) {
         oldCoors =  Set(cells)
-        print(oldCoors)
     }
     mutating func setName(name: String) {self.name = name}
     mutating func clear() {
@@ -25,7 +25,6 @@ struct Colony: CustomStringConvertible {
         oldCoors.remove(Coordinate(row, col))
     }
     func isCellAlive(_ c: Coordinate)-> Bool {
-        print(oldCoors.contains(c))
         return oldCoors.contains(c)
     }
     var numberLivingCells: Int {return oldCoors.count}
