@@ -1,6 +1,6 @@
 struct Colony: CustomStringConvertible, Identifiable {
-    private (set) var name: String = "No Name"
-    private (set) var generationNumber = 0
+    var name: String = "No Name"
+    var generationNumber = 0
     var id: Int
     static var nextID = 0
     let size: Int
