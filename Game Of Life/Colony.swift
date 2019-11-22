@@ -1,3 +1,5 @@
+// colony.swift
+
 struct Colony: CustomStringConvertible, Identifiable {
     var name: String = "No Name"
     var generationNumber = 0
