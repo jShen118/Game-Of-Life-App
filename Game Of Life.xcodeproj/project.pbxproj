@@ -16,11 +16,11 @@
 		8D9C548E23884D4C0020DE95 /* Game_Of_LifeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C548D23884D4C0020DE95 /* Game_Of_LifeUITests.swift */; };
 		8DDB9B9423884E68001DBE6D /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9323884E68001DBE6D /* Coordinate.swift */; };
 		8DDB9B9523884E68001DBE6D /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9223884E68001DBE6D /* Colony.swift */; };
-		8DDB9BA023884F3B001DBE6D /* ColonyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9B23884F3B001DBE6D /* ColonyList.swift */; };
-		8DDB9BA123884F3B001DBE6D /* Templates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9C23884F3B001DBE6D /* Templates.swift */; };
-		8DDB9BA223884F3B001DBE6D /* ColonyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9D23884F3B001DBE6D /* ColonyRow.swift */; };
-		8DDB9BA323884F3B001DBE6D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9E23884F3B001DBE6D /* MainView.swift */; };
-		8DDB9BA423884F3B001DBE6D /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDB9B9F23884F3B001DBE6D /* ColonyView.swift */; };
+		8DE2DF982388543E00BDC68B /* ColonyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF932388543E00BDC68B /* ColonyList.swift */; };
+		8DE2DF992388543E00BDC68B /* Templates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF942388543E00BDC68B /* Templates.swift */; };
+		8DE2DF9A2388543E00BDC68B /* ColonyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF952388543E00BDC68B /* ColonyRow.swift */; };
+		8DE2DF9B2388543E00BDC68B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF962388543E00BDC68B /* MainView.swift */; };
+		8DE2DF9C2388543E00BDC68B /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF972388543E00BDC68B /* ColonyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +56,11 @@
 		8D9C548F23884D4C0020DE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DDB9B9223884E68001DBE6D /* Colony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
 		8DDB9B9323884E68001DBE6D /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		8DDB9B9B23884F3B001DBE6D /* ColonyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyList.swift; sourceTree = "<group>"; };
-		8DDB9B9C23884F3B001DBE6D /* Templates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Templates.swift; sourceTree = "<group>"; };
-		8DDB9B9D23884F3B001DBE6D /* ColonyRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyRow.swift; sourceTree = "<group>"; };
-		8DDB9B9E23884F3B001DBE6D /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		8DDB9B9F23884F3B001DBE6D /* ColonyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyView.swift; sourceTree = "<group>"; };
+		8DE2DF932388543E00BDC68B /* ColonyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyList.swift; sourceTree = "<group>"; };
+		8DE2DF942388543E00BDC68B /* Templates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Templates.swift; sourceTree = "<group>"; };
+		8DE2DF952388543E00BDC68B /* ColonyRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyRow.swift; sourceTree = "<group>"; };
+		8DE2DF962388543E00BDC68B /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8DE2DF972388543E00BDC68B /* ColonyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,9 +111,9 @@
 		8D9C546A23884D470020DE95 /* Game Of Life */ = {
 			isa = PBXGroup;
 			children = (
-				8DDB9B9A23884F3B001DBE6D /* Views */,
 				8D9C546B23884D470020DE95 /* AppDelegate.swift */,
 				8D9C546D23884D470020DE95 /* SceneDelegate.swift */,
+				8DE2DF922388543E00BDC68B /* Views */,
 				8D9C547123884D4B0020DE95 /* Assets.xcassets */,
 				8D9C547623884D4B0020DE95 /* LaunchScreen.storyboard */,
 				8D9C547923884D4B0020DE95 /* Info.plist */,
@@ -150,17 +150,16 @@
 			path = "Game Of LifeUITests";
 			sourceTree = "<group>";
 		};
-		8DDB9B9A23884F3B001DBE6D /* Views */ = {
+		8DE2DF922388543E00BDC68B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8DDB9B9B23884F3B001DBE6D /* ColonyList.swift */,
-				8DDB9B9C23884F3B001DBE6D /* Templates.swift */,
-				8DDB9B9D23884F3B001DBE6D /* ColonyRow.swift */,
-				8DDB9B9E23884F3B001DBE6D /* MainView.swift */,
-				8DDB9B9F23884F3B001DBE6D /* ColonyView.swift */,
+				8DE2DF932388543E00BDC68B /* ColonyList.swift */,
+				8DE2DF942388543E00BDC68B /* Templates.swift */,
+				8DE2DF952388543E00BDC68B /* ColonyRow.swift */,
+				8DE2DF962388543E00BDC68B /* MainView.swift */,
+				8DE2DF972388543E00BDC68B /* ColonyView.swift */,
 			);
-			name = Views;
-			path = "../../../../Downloads/Game-Of-Life-App-master/Views";
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,14 +294,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9C546C23884D470020DE95 /* AppDelegate.swift in Sources */,
-				8DDB9BA323884F3B001DBE6D /* MainView.swift in Sources */,
-				8DDB9BA223884F3B001DBE6D /* ColonyRow.swift in Sources */,
+				8DE2DF9B2388543E00BDC68B /* MainView.swift in Sources */,
+				8DE2DF9A2388543E00BDC68B /* ColonyRow.swift in Sources */,
 				8D9C546E23884D470020DE95 /* SceneDelegate.swift in Sources */,
 				8DDB9B9423884E68001DBE6D /* Coordinate.swift in Sources */,
-				8DDB9BA023884F3B001DBE6D /* ColonyList.swift in Sources */,
+				8DE2DF982388543E00BDC68B /* ColonyList.swift in Sources */,
 				8DDB9B9523884E68001DBE6D /* Colony.swift in Sources */,
-				8DDB9BA123884F3B001DBE6D /* Templates.swift in Sources */,
-				8DDB9BA423884F3B001DBE6D /* ColonyView.swift in Sources */,
+				8DE2DF992388543E00BDC68B /* Templates.swift in Sources */,
+				8DE2DF9C2388543E00BDC68B /* ColonyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
