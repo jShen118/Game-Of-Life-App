@@ -1,3 +1,5 @@
+// hi i changed something
+
 struct Coordinate: CustomStringConvertible, Hashable {
     let row: Int
     let col: Int
