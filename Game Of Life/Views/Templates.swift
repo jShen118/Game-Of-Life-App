@@ -12,7 +12,7 @@ struct Templates: View {
             HStack {
                 Button(action: {
                     self.isAdding.toggle()
-                    self.colonyData.append(Colony("Enter New Colony Name", 60, []))
+                    self.colonyData.append(Colony("New Colony", 60, []))
                 }) {
                     ZStack {
                         Rectangle()
@@ -24,7 +24,7 @@ struct Templates: View {
                 }
                Button(action: {
                    self.isAdding.toggle()
-                   self.colonyData.append(Colony("Enter New Colony Name", 60, []))
+                   self.colonyData.append(Colony("New Colony", 60, []))
                }) {
                    ZStack {
                        Rectangle()
@@ -38,7 +38,7 @@ struct Templates: View {
             HStack {
                 Button(action: {
                     self.isAdding.toggle()
-                    self.colonyData.append(Colony("Enter New Colony Name", 60, []))
+                    self.colonyData.append(Colony("New Colony", 60, []))
                 }) {
                     ZStack {
                         Rectangle()
@@ -50,7 +50,7 @@ struct Templates: View {
                 }
                 Button(action: {
                     self.isAdding.toggle()
-                    self.colonyData.append(Colony("Enter New Colony Name", 60, []))
+                    self.colonyData.append(Colony("New Colony", 60, []))
                 }) {
                     ZStack {
                         Rectangle()

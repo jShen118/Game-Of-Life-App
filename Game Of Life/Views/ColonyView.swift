@@ -33,11 +33,11 @@ struct ColonyView: View {
     
     var body: some View {
         VStack {
-            if colony.name == "Enter New Colony Name" {
-                TextField("", text: self.$colony.name)
+            if colony.name == "New Colony" {
+                TextField("New Colony", text: self.$colony.name)
                     .foregroundColor(.gray)
             } else {
-                TextField("", text: self.$colony.name)
+                TextField(colony.name, text: self.$colony.name)
             }
             self.gridView
             HStack {
