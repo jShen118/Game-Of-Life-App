@@ -11,6 +11,26 @@ struct ColonyView: View {
     @State var isEvolving = false
     @State var wrap = false
     
+    var gridView: some View {
+        VStack(spacing: 0) {
+            ForEach(0..<60) { row in
+                HStack(spacing: 0) {
+                    ForEach(0..<60) { col in
+                        Rectangle().fill(self.colony.isCellAlive(Coordinate(row, col)) ? Color.green : Color.red)
+                            .frame(width: 10, height: 10)
+                            .padding(1)
+                            .onTapGesture {self.colony.toggleLife(Coordinate(row, col))}
+                    }
+                }
+            }
+        }.onReceive(evolutionTimer) {_ in
+            if self.isEvolving {
+                if self.wrap {self.colony.evolveWrap()}
+                else {self.colony.evolve()}
+            }
+        }.drawingGroup()
+    }
+    
     var body: some View {
         VStack {
             if colony.name == "Enter New Colony Name" {
@@ -19,31 +39,7 @@ struct ColonyView: View {
             } else {
                 TextField("", text: self.$colony.name)
             }
-            VStack(spacing: 0) {
-                ForEach(0..<60) { row in
-                    HStack(spacing: 0) {
-                        ForEach(0..<60) { col in
-                            if self.colony.isCellAlive(Coordinate(row, col)) {
-                                Rectangle().fill(Color.green)
-                                    .frame(width: 10, height: 10)
-                                    .padding(1)
-                                    .onTapGesture {self.colony.toggleLife(Coordinate(row, col))}
-                            } else {
-                                Rectangle().fill(Color.red)
-                                    .frame(width: 10, height: 10)
-                                    .padding(1)
-                                    .onTapGesture {self.colony.toggleLife(Coordinate(row, col))}
-                            }
-                        }
-                    }
-                }
-            }.drawingGroup()
-            .onReceive(evolutionTimer) {_ in
-                if self.isEvolving {
-                    if self.wrap {self.colony.evolveWrap()}
-                    else {self.colony.evolve()}
-                }
-            }
+            self.gridView
             HStack {
                 Button(action: {self.isEvolving.toggle()}) {
                     Text("Evolve")
