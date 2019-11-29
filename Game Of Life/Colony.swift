@@ -108,9 +108,12 @@ extension Colony {
         
         for row in 0..<size {
             for col in 0..<size {
-                var neighbors = -1 // automatically exclude own cell
+                var neighbors = 0
                 for dr in -1...1 {
                     for dc in -1...1 {
+                        if dr == 0 && dc == 0 {
+                            continue  // automatically exclude own cell
+                        }
                         neighbors+=cellvalue_nowrap(row+dr, col+dc)
                     }
                 }
@@ -120,6 +123,7 @@ extension Colony {
                 }
             }
         }
+        data = buffer
     }
 }
 

@@ -12,6 +12,9 @@ struct ColonyView: View {
     @State var wrap = false
     
     func onDragAt(point: CGPoint) {
+        if point.x < 0 || point.y < 0 || point.x >= 600 || point.y >= 600 {
+            return
+        }
         let row = Int(point.y/10)
         let col = Int(point.x/10)
         print(row,col)

@@ -45,14 +45,6 @@ struct MainView : View {
                 ColonyView(colony: self.$colonyData[self.currentID])
                     .offset(x: -185, y: 0)
                 .frame(width: 500, height: 500)
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            if !self.colonyData[self.currentID].isCellAlive(self.convertToCoordinates(Double(value.location.y), Double(value.location.x))) {
-                                self.colonyData[self.currentID].setCellAlive(self.convertToCoordinates(Double(value.location.y), Double(value.location.x)))
-                            }
-                        }
-                )
             }
         }
     }
