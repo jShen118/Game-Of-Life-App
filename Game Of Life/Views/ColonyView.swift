@@ -10,28 +10,32 @@ struct ColonyView: View {
     }
     @State var isEvolving = false
     @State var wrap = false
+    var gridLength: CGFloat
+    var cellLength: CGFloat {
+        return gridLength/60
+    }
     
     func onDragAt(point: CGPoint) {
-        if point.x < 0 || point.y < 0 || point.x >= 600 || point.y >= 600 {
+        if point.x < 0 || point.y < 0 || point.x >= gridLength || point.y >= gridLength {
             return
         }
-        let row = Int(point.y/10)
-        let col = Int(point.x/10)
+        let row = Int(point.y/cellLength)
+        let col = Int(point.x/cellLength)
         print(row,col)
         self.colony.setCellAlive(Coordinate(row, col))
     }
     
     func renderGrid()->UIImage {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 600, height: 600))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: gridLength, height: gridLength))
         let img = renderer.image { ctx in
             ctx.cgContext.setFillColor(UIColor.blue.cgColor)
 
-            let rectangle = CGRect(x: 0, y: 0, width: 600, height: 600)
+            let rectangle = CGRect(x: 0, y: 0, width: gridLength, height: gridLength)
             ctx.cgContext.addRect(rectangle)
             
             for row in 0..<60 {
                 for col in 0..<60 {
-                    let rectangle = CGRect(x: col*10, y: row*10, width: 10, height: 10)
+                    let rectangle = CGRect(x: Int(CGFloat(col)*cellLength), y: Int(CGFloat(row)*cellLength), width: Int(cellLength), height: Int(cellLength))
                     ctx.cgContext.addRect(rectangle)
                     let color = colony.isCellAlive(Coordinate(row, col)) ? UIColor.green : UIColor.red
                     
@@ -80,3 +84,4 @@ struct ColonyView: View {
         }
     }
 }
+
