@@ -42,14 +42,11 @@ struct MainView : View {
                 ColonyList(colonyData: self.$colonyData, currentID: self.$currentID)
                     .frame(width: geometry.size.width / 4, height: geometry.size.height)
                 Spacer()
-                ColonyView(colony: self.$colonyData[self.currentID])
-                    .offset(x: -185, y: 0)
-                .frame(width: 500, height: 500)
+                ColonyView(colony: self.$colonyData[self.currentID], gridLength: geometry.size.height*0.8)
+                    .frame(width: geometry.size.height*0.9)
+                Spacer()
             }
         }
     }
-    
-    func convertToCoordinates(_ x: Double, _ y: Double)-> Coordinate {
-        return Coordinate(Int(x/8.3333333), Int(y/8.3333333))
-    }
 }
+
