@@ -9,6 +9,7 @@ struct ColonyView: View {
         return Timer.publish(every: TimeInterval(evolveTime), on: .main, in: .common).autoconnect()
     }
     @State var isEvolving = false
+    @State var isOpenSettings = false
     @State var wrap = false
     var gridLength: CGFloat
     var cellLength: CGFloat {
@@ -21,7 +22,7 @@ struct ColonyView: View {
         }
         let row = Int(point.y/cellLength)
         let col = Int(point.x/cellLength)
-        print(row,col)
+        //print(row,col)
         self.colony.setCellAlive(Coordinate(row, col))
     }
     
@@ -67,21 +68,58 @@ struct ColonyView: View {
     
     var body: some View {
         VStack {
-            if colony.name == "New Colony" {
-                TextField("New Colony", text: self.$colony.name)
-                    .foregroundColor(.gray)
-            } else {
-                TextField(colony.name, text: self.$colony.name)
-            }
-            self.gridView
             HStack {
-                Button(action: {self.isEvolving.toggle()}) {
+                if colony.name == "New Colony" {
+                    TextField("New Colony", text: self.$colony.name)
+                        .font(.largeTitle)
+                        .padding()
+                        .foregroundColor(.gray)
+                } else {
+                    TextField(colony.name, text: self.$colony.name)
+                        .font(.largeTitle)
+                        .padding()
+                }
+                
+                Button(action: {self.isOpenSettings.toggle()}) {
+                    Image(systemName: "gear")
+                        .resizable()
+                        .foregroundColor(.black)
+                }
+                .frame(width: 25, height: 25, alignment: .topTrailing)
+                .padding()
+                .sheet(isPresented: $isOpenSettings) {
+                    Settings()
+                }
+            }
+            
+            self.gridView
+            
+            HStack {
+                Slider(value: $evolveTime, in: 0.1...2, step: 0.05)
+                
+                Spacer()
+                
+                VStack {
+                    if isEvolving {
+                        Button(action: {self.isEvolving.toggle()}) {
+                            Image(systemName: "pause.fill")
+                                 .resizable()
+                                .foregroundColor(.black)
+                        }.frame(width: 25, height: 25, alignment: .center)
+                    } else {
+                        Button(action: {self.isEvolving.toggle()}) {
+                            Image(systemName: "play.fill")
+                                 .resizable()
+                                .foregroundColor(.black)
+                        }.frame(width: 25, height: 25, alignment: .center)
+                    }
                     Text("Evolve")
                 }
-                Slider(value: $evolveTime, in: 0.1...2, step: 0.05)
-                Toggle(isOn: $wrap) {EmptyView()}
+                
+                Toggle("", isOn: $wrap)
+                    .padding()
             }
-        }
+        }.offset(x: -23, y: 0)
     }
 }
 

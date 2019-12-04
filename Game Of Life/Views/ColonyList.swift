@@ -10,24 +10,26 @@ struct ColonyList: View {
     }
     
     var body: some View {
-        List {
-            HStack {
-                Text("Colonies")
-                    .font(.largeTitle)
-                    .padding()
-                Button(action: {
-                    self.isAdding.toggle()
-                }) {
-                    Text("+")
-                } .sheet(isPresented: $isAdding) {
-                    Templates(colonyData: self.$colonyData, isAdding: self.$isAdding)
+        NavigationView {
+            List {
+                ForEach(colonyData) { colony in
+                    Text("\(colony.name)")
+                        .onTapGesture {self.currentID = colony.id}
                 }
             }
-            
-            ForEach(colonyData) { colony in
-                Text("\(colony.name)")
-                    .onTapGesture {self.currentID = colony.id}
-            }
+            .navigationBarTitle(Text("Colonies"))
+            .navigationBarItems(trailing:
+                HStack {
+                    Button(action: { self.isAdding.toggle() }) {
+                        Text("+")
+                            .foregroundColor(.black)
+                            .font(.largeTitle)
+                            .padding()
+                    }
+                    .sheet(isPresented: $isAdding) {
+                        Templates(colonyData: self.$colonyData, isAdding: self.$isAdding)
+                    }
+                })
         }
     }
 }

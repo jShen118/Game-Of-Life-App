@@ -40,7 +40,7 @@ struct MainView : View {
         GeometryReader { geometry in
             HStack {
                 ColonyList(colonyData: self.$colonyData, currentID: self.$currentID)
-                    .frame(width: geometry.size.width / 4, height: geometry.size.height)
+                    //.frame(width: geometry.size.width / 4, height: geometry.size.height)
                 Spacer()
                 ColonyView(colony: self.$colonyData[self.currentID], gridLength: geometry.size.height*0.8)
                     .frame(width: geometry.size.height*0.9)
