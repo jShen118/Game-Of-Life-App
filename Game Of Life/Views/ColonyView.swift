@@ -90,6 +90,7 @@ struct ColonyView: View {
                 .sheet(isPresented: $isOpenSettings) {
                     Settings()
                 }
+                Spacer()
             }
             
             self.gridView
@@ -117,9 +118,9 @@ struct ColonyView: View {
                 }
                 
                 Toggle("", isOn: $wrap)
-                    .padding()
-            }
-        }.offset(x: -23, y: 0)
+
+            }.padding()
+        }
     }
 }
 
