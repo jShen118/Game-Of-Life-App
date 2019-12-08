@@ -18,7 +18,7 @@ struct ColonyList: View {
                 ColonyRow(colony: colony)
                     .listRowInsets(EdgeInsets())
                     .onTapGesture {self.currentID = self.colonyIndex(colony)}
-                    .background((self.currentID == self.colonyIndex(colony)) ? Color.blue.opacity(0.5) : Color.white)
+                    .background((self.currentID == self.colonyIndex(colony)) ? Color.gray.opacity(0.5) : Color.white)
             }.onDelete(perform: self.delete)
         }
         .navigationBarTitle(Text("Colonies"))
