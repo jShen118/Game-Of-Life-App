@@ -6,14 +6,16 @@ struct ColonyList: View {
     @State var isAdding = false
     
     func colonyIndex(_ colony: Colony)-> Int {
-        return colony.id
+        for i in 0..<colonyData.count {
+            if colonyData[i].name == colony.name {return i}
+        }
+        return 0
     }
-    
     var body: some View {
         List {
             ForEach(self.colonyData) { colony in
                 ColonyRow(colony: colony)
-                    .onTapGesture {self.currentID = colony.id}
+                    .onTapGesture {self.currentID = self.colonyIndex(colony)}
             }.onDelete(perform: self.delete)
         }
         .navigationBarTitle(Text("Colonies"))
@@ -33,6 +35,7 @@ struct ColonyList: View {
     }
     
     func delete(at offsets: IndexSet) {
+        if currentID == colonyData.count - 1 && colonyData.count > 1 {currentID -= 1}
         colonyData.remove(atOffsets: offsets)
     }
 }

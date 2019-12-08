@@ -40,9 +40,11 @@ struct MainView : View {
         GeometryReader { geometry in
             NavigationView {
                 ColonyList(colonyData: self.$colonyData, currentID: self.$currentID)
-                    //.frame(width: geometry.size.width / 4, height: geometry.size.height)
-                ColonyView(colony: self.$colonyData[self.currentID], gridLength: geometry.size.height*0.8)
-                    //.frame(width: geometry.size.height*0.9)
+                    .frame(width: geometry.size.width / 4)
+                if self.colonyData.count > 0 {
+                    ColonyView(colony: self.$colonyData[self.currentID], gridLength: geometry.size.height*0.8)
+                    .frame(width: geometry.size.height*0.9)
+                } else {Text("No Colonies")}
             }
         }
     }
