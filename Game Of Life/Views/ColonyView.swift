@@ -69,6 +69,15 @@ struct ColonyView: View {
         )
     }
     
+    var icon: some View {
+        Image(uiImage: renderGrid()).onReceive(evolutionTimer) {_ in
+            if self.isEvolving {
+                if self.wrap {self.colony.evolveWrap()}
+                else {self.colony.evolve()}
+            }
+        }.drawingGroup()
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -120,7 +129,8 @@ struct ColonyView: View {
                     Text("Evolve")
                 }
                 
-                Toggle("", isOn: $wrap)
+                
+                Toggle("Wrapping", isOn: $wrap)
 
             }.padding()
         }

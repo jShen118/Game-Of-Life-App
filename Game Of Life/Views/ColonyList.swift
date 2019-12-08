@@ -11,6 +11,7 @@ struct ColonyList: View {
         }
         return 0
     }
+    
     var body: some View {
         List {
             ForEach(self.colonyData) { colony in
