@@ -11,8 +11,8 @@ struct ColonyView: View {
     @State var isEvolving = false
     @State var isOpenSettings = false
     @State var wrap = false
-    @State var liveColor = UIColor.green
-    @State var deadColor = UIColor.red
+    //@State var liveColor = UIColor.green
+    //@State var deadColor = UIColor.red
     
     var gridLength: CGFloat
     var cellLength: CGFloat {
@@ -42,7 +42,7 @@ struct ColonyView: View {
                 for col in 0..<60 {
                     let rectangle = CGRect(x: Int(CGFloat(col)*cellLength), y: Int(CGFloat(row)*cellLength), width: Int(cellLength), height: Int(cellLength))
                     ctx.cgContext.addRect(rectangle)
-                    let color = colony.isCellAlive(Coordinate(row, col)) ? liveColor : deadColor
+                    let color = colony.isCellAlive(Coordinate(row, col)) ? colony.liveColor : colony.deadColor
                     
                     ctx.cgContext.setFillColor(color.cgColor)
                     ctx.cgContext.addRect(rectangle)
@@ -93,7 +93,7 @@ struct ColonyView: View {
                 .frame(width: 25, height: 25, alignment: .topTrailing)
                 .padding()
                 .sheet(isPresented: $isOpenSettings) {
-                    Settings(name: self.$colony.name, liveColor: self.$liveColor, deadColor: self.$deadColor, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
+                    Settings(name: self.$colony.name, liveColor: self.$colony.liveColor, deadColor: self.$colony.deadColor, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
                 }
                 Spacer()
             }
