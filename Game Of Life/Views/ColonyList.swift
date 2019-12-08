@@ -10,27 +10,26 @@ struct ColonyList: View {
     }
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(self.colonyData) { colony in
-                    ColonyRow(colony: colony)
-                        .onTapGesture {self.currentID = colony.id}
-                }.onDelete(perform: self.delete)
-            }
-            .navigationBarTitle(Text("Colonies"))
-            .navigationBarItems(trailing:
-                HStack {
-                    Button(action: { self.isAdding.toggle() }) {
-                        Text("+")
-                            .foregroundColor(.black)
-                            .font(.largeTitle)
-                            .padding()
-                    }
-                    .sheet(isPresented: self.$isAdding) {
-                        Templates(colonyData: self.$colonyData, isAdding: self.$isAdding)
-                    }
-                })
+        List {
+            ForEach(self.colonyData) { colony in
+                ColonyRow(colony: colony)
+                    .onTapGesture {self.currentID = colony.id}
+            }.onDelete(perform: self.delete)
         }
+        .navigationBarTitle(Text("Colonies"))
+        .navigationBarItems(trailing:
+            HStack {
+                Button(action: { self.isAdding.toggle() }) {
+                    Text("+")
+                        .foregroundColor(.black)
+                        .font(.largeTitle)
+                        .padding()
+                }.frame(height: 100)
+                .sheet(isPresented: self.$isAdding) {
+                    Templates(colonyData: self.$colonyData, isAdding: self.$isAdding)
+                }
+            }
+        )
     }
     
     func delete(at offsets: IndexSet) {
