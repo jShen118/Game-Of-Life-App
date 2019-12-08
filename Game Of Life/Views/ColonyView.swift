@@ -29,6 +29,7 @@ struct ColonyView: View {
         self.colony.setCellAlive(Coordinate(row, col))
     }
     
+    
     func renderGrid()->UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: gridLength, height: gridLength))
         let img = renderer.image { ctx in
@@ -69,14 +70,6 @@ struct ColonyView: View {
         )
     }
     
-    var icon: some View {
-        Image(uiImage: renderGrid()).onReceive(evolutionTimer) {_ in
-            if self.isEvolving {
-                if self.wrap {self.colony.evolveWrap()}
-                else {self.colony.evolve()}
-            }
-        }.drawingGroup()
-    }
     
     var body: some View {
         VStack {
