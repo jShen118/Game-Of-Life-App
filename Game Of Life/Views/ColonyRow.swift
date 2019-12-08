@@ -6,8 +6,7 @@ struct ColonyRow: View {
     var body: some View {
         GeometryReader { geometry in
             HStack {
-                Spacer()
-                Text("\(self.colony.name)")
+                Text("  \(self.colony.name)")
                 Spacer()
             }
         }
