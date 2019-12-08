@@ -3,6 +3,7 @@ import SwiftUI
 struct Templates: View {
     @Binding var colonyData: [Colony]
     @Binding var isAdding: Bool
+    @Binding var currentID: Int
     
     var body: some View {
         VStack {
@@ -13,6 +14,7 @@ struct Templates: View {
                 Button(action: {
                     self.isAdding.toggle()
                     self.colonyData.append(Colony("New Colony", 60, []))
+                    self.currentID = self.colonyData.count - 1
                 }) {
                     ZStack {
                         Rectangle()
@@ -25,6 +27,7 @@ struct Templates: View {
                Button(action: {
                    self.isAdding.toggle()
                    self.colonyData.append(Colony("New Colony", 60, []))
+                   self.currentID = self.colonyData.count - 1
                }) {
                    ZStack {
                        Rectangle()
@@ -39,6 +42,7 @@ struct Templates: View {
                 Button(action: {
                     self.isAdding.toggle()
                     self.colonyData.append(Colony("New Colony", 60, []))
+                    self.currentID = self.colonyData.count - 1
                 }) {
                     ZStack {
                         Rectangle()
@@ -51,6 +55,7 @@ struct Templates: View {
                 Button(action: {
                     self.isAdding.toggle()
                     self.colonyData.append(Colony("New Colony", 60, []))
+                    self.currentID = self.colonyData.count - 1
                 }) {
                     ZStack {
                         Rectangle()

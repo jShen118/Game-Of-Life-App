@@ -26,7 +26,7 @@ struct ColonyList: View {
                         .padding()
                 }.frame(height: 100)
                 .sheet(isPresented: self.$isAdding) {
-                    Templates(colonyData: self.$colonyData, isAdding: self.$isAdding)
+                    Templates(colonyData: self.$colonyData, isAdding: self.$isAdding, currentID: self.$currentID)
                 }
             }
         )
