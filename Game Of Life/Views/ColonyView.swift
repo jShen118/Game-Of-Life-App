@@ -11,8 +11,8 @@ struct ColonyView: View {
     @State var isEvolving = false
     @State var isOpenSettings = false
     @State var wrap = false
-    //@State var liveColor = UIColor.green
-    //@State var deadColor = UIColor.red
+    @State var liveColor = UIColor.green
+    @State var deadColor = UIColor.red
     
     var gridLength: CGFloat
     var cellLength: CGFloat {
