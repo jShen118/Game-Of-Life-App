@@ -101,7 +101,7 @@ struct ColonyView: View {
                 .frame(width: 23, height: 23, alignment: .topTrailing)
                 .padding()
                 .sheet(isPresented: $isOpenSettings) {
-                    Settings(name: self.$colony.name, liveColor: self.$colony.liveColor, deadColor: self.$colony.deadColor, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
+                    Settings(name: self.$colony.name, liveColor: self.$liveColor, deadColor: self.$deadColor, wrapping: self.wrap, timer: self.evolveTime, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
                 }
             }
             
