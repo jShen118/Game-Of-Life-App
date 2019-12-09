@@ -22,6 +22,8 @@
 		8DE2DF9B2388543E00BDC68B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF962388543E00BDC68B /* MainView.swift */; };
 		8DE2DF9C2388543E00BDC68B /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2DF972388543E00BDC68B /* ColonyView.swift */; };
 		F6CB898423974BDD0036F54D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CB898323974BDD0036F54D /* Settings.swift */; };
+		F6F1FB7A239E9A140091B453 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F1FB79239E9A140091B453 /* Controller.swift */; };
+		F6F1FB7C239E9A980091B453 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F1FB7B239E9A980091B453 /* Statistics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		8DE2DF962388543E00BDC68B /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8DE2DF972388543E00BDC68B /* ColonyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyView.swift; sourceTree = "<group>"; };
 		F6CB898323974BDD0036F54D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F6F1FB79239E9A140091B453 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		F6F1FB7B239E9A980091B453 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +164,9 @@
 				8DE2DF972388543E00BDC68B /* ColonyView.swift */,
 				8DE2DF952388543E00BDC68B /* ColonyRow.swift */,
 				8DE2DF942388543E00BDC68B /* Templates.swift */,
+				F6F1FB79239E9A140091B453 /* Controller.swift */,
 				F6CB898323974BDD0036F54D /* Settings.swift */,
+				F6F1FB7B239E9A980091B453 /* Statistics.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 			files = (
 				8D9C546C23884D470020DE95 /* AppDelegate.swift in Sources */,
 				8DE2DF9B2388543E00BDC68B /* MainView.swift in Sources */,
+				F6F1FB7A239E9A140091B453 /* Controller.swift in Sources */,
 				8DE2DF9A2388543E00BDC68B /* ColonyRow.swift in Sources */,
 				8D9C546E23884D470020DE95 /* SceneDelegate.swift in Sources */,
 				F6CB898423974BDD0036F54D /* Settings.swift in Sources */,
@@ -305,6 +312,7 @@
 				8DE2DF982388543E00BDC68B /* ColonyList.swift in Sources */,
 				8DDB9B9523884E68001DBE6D /* Colony.swift in Sources */,
 				8DE2DF992388543E00BDC68B /* Templates.swift in Sources */,
+				F6F1FB7C239E9A980091B453 /* Statistics.swift in Sources */,
 				8DE2DF9C2388543E00BDC68B /* ColonyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
