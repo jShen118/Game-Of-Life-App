@@ -74,36 +74,48 @@ struct ColonyView: View {
     var body: some View {
         VStack {
             HStack {
+                Toggle("Wrapping", isOn: self.$wrap)
+                    .frame(width: 135)
+                    .padding()
+                
                 if colony.name == "New Colony" {
                     TextField("New Colony", text: self.$colony.name)
                         .font(.largeTitle)
                         .padding()
                         .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .offset(x: -50)
                 } else {
                     TextField(colony.name, text: self.$colony.name)
                         .font(.largeTitle)
                         .padding()
+                        .multilineTextAlignment(.center)
+                        .offset(x: -50)
                 }
-                
+                                
                 Button(action: {self.isOpenSettings.toggle()}) {
                     Image(systemName: "gear")
                         .resizable()
                         .foregroundColor(.black)
                 }
-                .frame(width: 25, height: 25, alignment: .topTrailing)
+                .frame(width: 23, height: 23, alignment: .topTrailing)
                 .padding()
                 .sheet(isPresented: $isOpenSettings) {
-                    Settings(name: self.$colony.name, liveColor: self.$liveColor, deadColor: self.$deadColor, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
+                    Settings(name: self.$colony.name, liveColor: self.$liveColor, deadColor: self.$deadColor, wrapping: self.wrap, timer: self.evolveTime, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
                 }
-                Spacer()
             }
             
             self.gridView
+                .multilineTextAlignment(.center)
+                .offset(x: 0, y: -8)
             
-            HStack {
-                Slider(value: $evolveTime, in: 0.1...2, step: 0.05)
-                
-                Spacer()
+            VStack {
+                HStack {
+                    Text("Fast")
+                    Slider(value: $evolveTime, in: 0.1...2, step: 0.05)
+                        .frame(width: 375)
+                    Text("Slow")
+                }
                 
                 VStack {
                     if isEvolving {
@@ -112,6 +124,7 @@ struct ColonyView: View {
                                  .resizable()
                                 .foregroundColor(.black)
                         }.frame(width: 25, height: 25, alignment: .center)
+                        
                     } else {
                         Button(action: {self.isEvolving.toggle()}) {
                             Image(systemName: "play.fill")
@@ -121,11 +134,7 @@ struct ColonyView: View {
                     }
                     Text("Evolve")
                 }
-                
-                
-                Toggle("Wrapping", isOn: $wrap)
-
-            }.padding()
+            }.multilineTextAlignment(.center)
         }
     }
 }
