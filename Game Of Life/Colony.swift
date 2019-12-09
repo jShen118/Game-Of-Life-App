@@ -1,4 +1,6 @@
 // colony.swift
+import SwiftUI
+import Foundation
 
 struct Colony: CustomStringConvertible, Identifiable {
     var name: String = "No Name"
@@ -7,6 +9,8 @@ struct Colony: CustomStringConvertible, Identifiable {
     static var nextID = 0
     let size: Int
     var data = [Bool]()
+    var liveColor = UIColor.green
+    var deadColor = UIColor.red
     
     init(_ name: String, _ size: Int = 10, _ coors: [Coordinate] = [Coordinate]()) {
         self.id = Colony.nextID
