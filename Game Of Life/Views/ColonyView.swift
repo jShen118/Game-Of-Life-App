@@ -54,7 +54,6 @@ struct ColonyView: View {
         }
         let row = Int(point.y/cellLength)
         let col = Int(point.x/cellLength)
-        print(row,col)
         self.colony.toggleLife(Coordinate(row, col))
     }
     
@@ -126,7 +125,7 @@ struct ColonyView: View {
          .gesture(DragGesture(minimumDistance: 0)
              .onChanged { value in
                  self.onDragAt(point: value.location)
-         }   // 4.
+         }
              .onEnded { value in
              }
          )
