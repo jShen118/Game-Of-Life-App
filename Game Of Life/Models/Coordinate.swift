@@ -1,9 +1,13 @@
-struct Coordinate: CustomStringConvertible, Hashable {
+struct Coordinate: CustomStringConvertible, Hashable, Identifiable {
+    var id: Int
+    
     let row: Int
     let col: Int
     init(_ r: Int, _ c: Int) {
         row = r
         col = c
+        id = r*60+c
+        
     }
     
     var description: String {

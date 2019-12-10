@@ -2,6 +2,36 @@ import SwiftUI
 import Foundation
 import Combine
 
+struct Checkerboard: Shape {
+    @Binding var colony: Colony
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        // figure out how big each row/column needs to be
+        let rowSize = rect.height / CGFloat(colony.size)
+        let columnSize = rect.width / CGFloat(colony.size)
+        
+        let rect = CGRect(x: 0, y: 0, width: rect.width, height: rect.height)
+        path.addRect(rect)
+
+        // loop over all rows and columns, making alternating squares colored
+        for coord in colony.cellsArray() {
+            // this square should be colored; add a rectangle here
+            let startX = columnSize * CGFloat(coord.col)
+            let startY = rowSize * CGFloat(coord.row)
+
+            let rect = CGRect(x: startX, y: startY, width: columnSize, height: rowSize)
+            path.addRect(rect)
+                
+        }
+
+        return path
+    }
+}
+
+
+
 struct ColonyView: View {
     @Binding var colony: Colony
     @State var evolveTime = 1.0
@@ -18,13 +48,50 @@ struct ColonyView: View {
     }
     
     func onDragAt(point: CGPoint) {
+        print(point)
         if point.x < 0 || point.y < 0 || point.x >= gridLength || point.y >= gridLength {
             return
         }
         let row = Int(point.y/cellLength)
         let col = Int(point.x/cellLength)
-        //print(row,col)
+        print(row,col)
         self.colony.toggleLife(Coordinate(row, col))
+    }
+    
+    func bruh(frameSize: Int)->some View {
+        let cellSize: CGFloat = CGFloat(frameSize / colony.size)
+        
+        var background = Path()
+        let rect = CGRect(x: 0, y: 0, width: frameSize, height: frameSize)
+        background.addRect(rect)
+        
+        var grid = Path()
+        for row in 0..<colony.size {
+            grid.move(to: CGPoint(x:0, y:CGFloat(row)*cellSize))
+            grid.addLine(to: CGPoint(x: CGFloat(frameSize), y:CGFloat(row)*cellSize))
+        }
+        for col in 0..<colony.size {
+            grid.move(to: CGPoint(x: CGFloat(col)*cellSize, y: 0))
+            grid.addLine(to: CGPoint(x: CGFloat(col)*cellSize, y: CGFloat(frameSize)))
+        }
+        
+        var cellsPath = Path()
+        
+        for coord in colony.cellsArray() {
+            // this square should be colored; add a rectangle here
+            let startX = cellSize * CGFloat(coord.col)
+            let startY = cellSize * CGFloat(coord.row)
+
+            let rect = CGRect(x: startX, y: startY, width: cellSize, height: cellSize)
+            cellsPath.addRect(rect)
+                
+        }
+        
+        return ZStack {
+            background.fill(self.colony.deadColor)
+            grid.stroke()
+            cellsPath.fill(self.colony.liveColor)
+        }
     }
     
      func renderGrid()->UIImage {
@@ -99,7 +166,7 @@ struct ColonyView: View {
                     Controller(name: self.$colony.name, liveColor: self.$colony.liveColor, deadColor: self.$colony.deadColor, wrap: self.$wrap, evolutionTime: self.$evolveTime, generationNumber: self.$colony.generationNumber, numberLiving: self.colony.numberLiving)
                 }
             }
-            self.gridView
+            //self.gridView
             /*
             ZStack {
                 ForEach(0..<60) { row in
@@ -119,6 +186,16 @@ struct ColonyView: View {
                 .onChanged { value in
                     self.onDragAt(point: value.location)
                 })*/
+            
+            bruh(frameSize: 600)
+            .frame(width: 600, height: 600).gesture(DragGesture(minimumDistance: 0)
+                .onChanged { value in
+                    self.onDragAt(point: value.location)
+            }   // 4.
+                .onEnded { value in
+                }
+            )
+            
  
             VStack {
                 HStack {

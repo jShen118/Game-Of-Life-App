@@ -13,12 +13,16 @@ struct Colony: CustomStringConvertible, Identifiable {
        var liveColor = Color.green
        var deadColor = Color.red
     
-    init(_ name: String, _ size: Int = 10, _ coors: [Coordinate] = [Coordinate]()) {
+    init(_ name: String, _ size: Int = 60, _ coors: [Coordinate] = [Coordinate]()) {
         self.id = Colony.nextID
         self.name = name
         self.size = size
         self.oldCoors = Set(coors)
         Colony.nextID += 1
+    }
+    
+    func cellsArray() -> [Coordinate] {
+        return Array(self.oldCoors)
     }
     
     mutating func setColonyFromCoors(_ cells: [Coordinate]) {
