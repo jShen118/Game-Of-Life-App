@@ -2,17 +2,17 @@
 //  Statistics.swift
 //  Game Of Life
 //
-//  Created by Joey Cohen on 12/9/19.
+//  Created by Joshua Shen on 12/9/19.
 //  Copyright © 2019 Stulin iOS. All rights reserved.
 //
 
 import SwiftUI
 
 struct Statistics: View {
-    @Binding var wrapping: Bool
-    @Binding var timer: Double
-    @Binding var generationNumber: Int
-    @Binding var numberLiving: Int
+    var wrap: Bool
+    var evolutionTime: Double
+    var generationNumber: Int
+    var numberLiving: Int
     
     var body: some View {
         VStack {
@@ -28,7 +28,7 @@ struct Statistics: View {
             }
             HStack {
                 Text("Wrapping:")
-                if self.wrapping {
+                if self.wrap {
                     Text("Enabled")
                 } else {
                     Text("Disabled")
@@ -36,7 +36,7 @@ struct Statistics: View {
                 Spacer()
             }.padding()
             HStack {
-                Text("Evolution Speed: \(self.timer) evolutions per second")
+                Text("Evolution Speed: \(self.evolutionTime) seconds per evolution")
                     .padding()
                 Spacer()
             }
