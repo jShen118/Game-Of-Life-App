@@ -120,11 +120,11 @@
 				8D9C546B23884D470020DE95 /* AppDelegate.swift */,
 				8D9C546D23884D470020DE95 /* SceneDelegate.swift */,
 				8DE2DF922388543E00BDC68B /* Views */,
+				F60FE937239F382A00765B7F /* Supporting Views */,
+				F60FE938239F388800765B7F /* Models */,
 				8D9C547123884D4B0020DE95 /* Assets.xcassets */,
 				8D9C547623884D4B0020DE95 /* LaunchScreen.storyboard */,
 				8D9C547923884D4B0020DE95 /* Info.plist */,
-				8DDB9B9223884E68001DBE6D /* Colony.swift */,
-				8DDB9B9323884E68001DBE6D /* Coordinate.swift */,
 				8D9C547323884D4B0020DE95 /* Preview Content */,
 			);
 			path = "Game Of Life";
@@ -162,13 +162,29 @@
 				8DE2DF962388543E00BDC68B /* MainView.swift */,
 				8DE2DF932388543E00BDC68B /* ColonyList.swift */,
 				8DE2DF972388543E00BDC68B /* ColonyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F60FE937239F382A00765B7F /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
 				8DE2DF952388543E00BDC68B /* ColonyRow.swift */,
 				8DE2DF942388543E00BDC68B /* Templates.swift */,
 				F6F1FB79239E9A140091B453 /* Controller.swift */,
 				F6CB898323974BDD0036F54D /* Settings.swift */,
 				F6F1FB7B239E9A980091B453 /* Statistics.swift */,
 			);
-			path = Views;
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
+		F60FE938239F388800765B7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8DDB9B9223884E68001DBE6D /* Colony.swift */,
+				8DDB9B9323884E68001DBE6D /* Coordinate.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
