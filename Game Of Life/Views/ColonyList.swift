@@ -38,7 +38,12 @@ struct ColonyList: View {
     }
     
     func delete(at offsets: IndexSet) {
-        if currentID == colonyData.count - 1 && colonyData.count > 1 {currentID -= 1}
-        colonyData.remove(atOffsets: offsets)
+        if colonyData.count > 1 {
+            if currentID == colonyData.count - 1 && colonyData.count > 1 {currentID -= 1}
+            colonyData.remove(atOffsets: offsets)
+        } else {
+            colonyData.append(Colony("New Colony"))
+            colonyData.remove(atOffsets: offsets)
+        }
     }
 }
