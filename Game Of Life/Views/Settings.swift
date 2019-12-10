@@ -10,8 +10,8 @@ import SwiftUI
 
 struct Settings: View {
     @Binding var name: String
-    @Binding var liveColor: UIColor
-    @Binding var deadColor: UIColor
+    @Binding var liveColor: Color
+    @Binding var deadColor: Color
     
     var body: some View {
         VStack {
@@ -25,15 +25,15 @@ struct Settings: View {
                 VStack {
                     Text("Living Cell Color").offset(y: 10)
                     Picker(selection: self.$liveColor, label: Text("")) {
-                        Text("Red").tag(UIColor.red)
-                        Text("Orange").tag(UIColor.orange)
-                        Text("Yellow").tag(UIColor.yellow)
-                        Text("Green").tag(UIColor.green)
-                        Text("Blue").tag(UIColor.blue)
-                        Text("Purple").tag(UIColor.purple)
-                        Text("Black").tag(UIColor.black)
-                        Text("Gray").tag(UIColor.gray)
-                        Text("White").tag(UIColor.white)
+                        Text("Red").tag(Color.red)
+                        Text("Orange").tag(Color.orange)
+                        Text("Yellow").tag(Color.yellow)
+                        Text("Green").tag(Color.green)
+                        Text("Blue").tag(Color.blue)
+                        Text("Purple").tag(Color.purple)
+                        Text("Black").tag(Color.black)
+                        Text("Gray").tag(Color.gray)
+                        Text("White").tag(Color.white)
                     }.offset(x: -4)
                 }
                 .padding()
@@ -42,15 +42,15 @@ struct Settings: View {
                 VStack {
                     Text("Dead Cell Color")
                     Picker(selection: self.$deadColor, label: Text("")) {
-                        Text("Red").tag(UIColor.red)
-                        Text("Orange").tag(UIColor.orange)
-                        Text("Yellow").tag(UIColor.yellow)
-                        Text("Green").tag(UIColor.green)
-                        Text("Blue").tag(UIColor.blue)
-                        Text("Purple").tag(UIColor.purple)
-                        Text("Black").tag(UIColor.black)
-                        Text("Gray").tag(UIColor.gray)
-                        Text("White").tag(UIColor.white)
+                        Text("Red").tag(Color.red)
+                        Text("Orange").tag(Color.orange)
+                        Text("Yellow").tag(Color.yellow)
+                        Text("Green").tag(Color.green)
+                        Text("Blue").tag(Color.blue)
+                        Text("Purple").tag(Color.purple)
+                        Text("Black").tag(Color.black)
+                        Text("Gray").tag(Color.gray)
+                        Text("White").tag(Color.white)
                     }.offset(x: -3)
                 }
                 .padding()
@@ -59,9 +59,3 @@ struct Settings: View {
         }.offset(y: -34)
     }
 }
-
-//struct Settings_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Settings(name: "joey", liveColor: .blue, deadColor: .red, wrapping: true, timer: 1.0, generationNumber: 5, numberLiving: 100)
-//    }
-//}
