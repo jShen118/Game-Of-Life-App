@@ -2,9 +2,8 @@
 import SwiftUI
 import Foundation
 
-import Foundation
 struct Colony: CustomStringConvertible, Identifiable {
-     var name: String = "No Name"
+       var name: String = "No Name"
        var generationNumber = 0
        var id: Int
        static var nextID = 0
