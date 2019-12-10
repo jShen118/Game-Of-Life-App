@@ -30,8 +30,6 @@ struct Checkerboard: Shape {
     }
 }
 
-
-
 struct ColonyView: View {
     @Binding var colony: Colony
     @State var evolveTime = 1.0
@@ -187,10 +185,11 @@ struct ColonyView: View {
                 })*/
             
             bruh(frameSize: 600)
-            .frame(width: 600, height: 600).gesture(DragGesture(minimumDistance: 0)
+            .frame(width: 600, height: 600)
             .onReceive(evolutionTimer) { _ in
                 if self.isEvolving {self.colony.evolve(self.wrap)}
             }
+            .gesture(DragGesture(minimumDistance: 0)
                 .onChanged { value in
                     self.onDragAt(point: value.location)
             }   // 4.

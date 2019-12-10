@@ -70,7 +70,7 @@ extension Templates {
     }
     func setGliderGun() {
         self.colonyData.append(Colony("New Colony", 60, [
-            Coordinate(5,1), Coordinate(5,2), Coordinate(6,1), Coordinate(6,2), Coordinate(5,11), Coordinate(6,11), Coordinate(7,11), Coordinate(9,13), Coordinate(9,14), Coordinate(4,12), Coordinate(3,13), Coordinate(3,14), Coordinate(6,15), Coordinate(4,16), Coordinate(8,16), Coordinate(5,17), Coordinate(6,17), Coordinate(7,17), Coordinate(6,18), Coordinate(5,21), Coordinate(4,21), Coordinate(3,21), Coordinate(5,22), Coordinate(4,22), Coordinate(3,22), Coordinate(2,23), Coordinate(6,23), Coordinate(6,25), Coordinate(7,25), Coordinate(1,25), Coordinate(2,25), Coordinate(3,35), Coordinate(3,36), Coordinate(4,35), Coordinate(4,36)
+            Coordinate(5,1), Coordinate(5,2), Coordinate(6,1), Coordinate(6,2), Coordinate(5,11), Coordinate(6,11), Coordinate(7,11), Coordinate(9,13), Coordinate(9,14), Coordinate(4,12), Coordinate(3,13), Coordinate(3,14), Coordinate(6,15), Coordinate(4,16), Coordinate(8,16), Coordinate(8,12), Coordinate(5,17), Coordinate(6,17), Coordinate(7,17), Coordinate(6,18), Coordinate(5,21), Coordinate(4,21), Coordinate(3,21), Coordinate(5,22), Coordinate(4,22), Coordinate(3,22), Coordinate(2,23), Coordinate(6,23), Coordinate(6,25), Coordinate(7,25), Coordinate(1,25), Coordinate(2,25), Coordinate(3,35), Coordinate(3,36), Coordinate(4,35), Coordinate(4,36)
         ]))
     }
 }

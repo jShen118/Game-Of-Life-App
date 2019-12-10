@@ -10,8 +10,8 @@ struct Colony: CustomStringConvertible, Identifiable {
        let size: Int
        var oldCoors = Set<Coordinate>()
        var newCoors = Set<Coordinate>()
-       var liveColor = Color.green
-       var deadColor = Color.red
+       var liveColor = Color.blue
+       var deadColor = Color.gray
     
     init(_ name: String, _ size: Int = 60, _ coors: [Coordinate] = [Coordinate]()) {
         self.id = Colony.nextID
