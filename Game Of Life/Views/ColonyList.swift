@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ColonyList: View {
+    @State private var showingAlert = false
     @Binding var colonyData: [Colony]
     @Binding var currentID: Int
     @State var isAdding = false
@@ -24,12 +25,18 @@ struct ColonyList: View {
         .navigationBarTitle(Text("Colonies"))
         .navigationBarItems(trailing:
             HStack {
-                Button(action: { self.isAdding.toggle() }) {
+                Button(action: {
+                    if self.colonyData[self.currentID].name == "New Colony" {self.showingAlert = true}
+                    else {self.isAdding.toggle()}
+                }) {
                     Text("+")
                         .foregroundColor(.black)
                         .font(.largeTitle)
                         .padding()
                 }.frame(height: 100)
+                 .alert(isPresented: $showingAlert) {
+                     Alert(title: Text("Error"), message: Text("Please give your colony a name before adding a new one."), dismissButton: .default(Text("Okay")))
+                 }
                 .sheet(isPresented: self.$isAdding) {
                     Templates(colonyData: self.$colonyData, isAdding: self.$isAdding, currentID: self.$currentID)
                 }
