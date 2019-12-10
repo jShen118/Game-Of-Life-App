@@ -188,6 +188,9 @@ struct ColonyView: View {
             
             bruh(frameSize: 600)
             .frame(width: 600, height: 600).gesture(DragGesture(minimumDistance: 0)
+            .onReceive(evolutionTimer) { _ in
+                if self.isEvolving {self.colony.evolve(self.wrap)}
+            }
                 .onChanged { value in
                     self.onDragAt(point: value.location)
             }   // 4.
