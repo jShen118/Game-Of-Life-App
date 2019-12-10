@@ -11,8 +11,6 @@ struct ColonyView: View {
     @State var isEvolving = false
     @State var isOpenSettings = false
     @State var wrap = false
-    @State var liveColor = UIColor.green
-    @State var deadColor = UIColor.red
     
     var gridLength: CGFloat
     var cellLength: CGFloat {
@@ -28,48 +26,6 @@ struct ColonyView: View {
         //print(row,col)
         self.colony.setCellAlive(Coordinate(row, col))
     }
-    
-    
-    func renderGrid()->UIImage {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: gridLength, height: gridLength))
-        let img = renderer.image { ctx in
-            ctx.cgContext.setFillColor(UIColor.blue.cgColor)
-
-            let rectangle = CGRect(x: 0, y: 0, width: gridLength, height: gridLength)
-            ctx.cgContext.addRect(rectangle)
-            
-            for row in 0..<60 {
-                for col in 0..<60 {
-                    let rectangle = CGRect(x: Int(CGFloat(col)*cellLength), y: Int(CGFloat(row)*cellLength), width: Int(cellLength), height: Int(cellLength))
-                    ctx.cgContext.addRect(rectangle)
-                    let color = colony.isCellAlive(Coordinate(row, col)) ? colony.liveColor : colony.deadColor
-                    
-                    ctx.cgContext.setFillColor(color.cgColor)
-                    ctx.cgContext.addRect(rectangle)
-                    ctx.cgContext.drawPath(using: .fillStroke)
-                }
-            }
-            ctx.cgContext.drawPath(using: .fillStroke)
-        }
-        return img
-    }
-    
-    var gridView: some View {
-        Image(uiImage: renderGrid()).onReceive(evolutionTimer) {_ in
-            if self.isEvolving {
-                if self.wrap {self.colony.evolveWrap()}
-                else {self.colony.evolve()}
-            }
-        }.drawingGroup()
-        .gesture(DragGesture(minimumDistance: 0)
-            .onChanged { value in
-                self.onDragAt(point: value.location)
-        }   // 4.
-            .onEnded { value in
-            }
-        )
-    }
-    
     
     var body: some View {
         VStack {
@@ -101,14 +57,29 @@ struct ColonyView: View {
                 .frame(width: 23, height: 23, alignment: .topTrailing)
                 .padding()
                 .sheet(isPresented: $isOpenSettings) {
-                    Controller(name: self.$colony.name, liveColor: self.$liveColor, deadColor: self.$deadColor, wrapping: self.wrap, timer: self.evolveTime, generationNumber: self.colony.generationNumber, numberLiving: self.colony.numberLivingCells)
+                    Controller(name: self.$colony.name, liveColor: self.$colony.liveColor, deadColor: self.$colony.deadColor, wrap: self.$wrap, evolutionTime: self.$evolveTime, generationNumber: self.$colony.generationNumber, numberLiving: self.colony.numberLiving)
                 }
             }
             
-            self.gridView
-                .multilineTextAlignment(.center)
-                .offset(x: 0, y: -8)
-            
+            ZStack {
+                ForEach(0..<60) { row in
+                    ForEach(0..<60) { col in
+                        Rectangle().foregroundColor(self.colony.isCellAlive(Coordinate(row, col)) ? self.colony.liveColor: self.colony.deadColor)
+                            .border(Color.black, width: 1)
+                            .offset(x: (CGFloat(col)-30)*self.cellLength, y: (CGFloat(row)-30)*self.cellLength)
+                            .frame(width: self.cellLength, height: self.cellLength)
+                            .onTapGesture {self.colony.toggleLife(Coordinate(row, col))}
+                    }
+                }
+            }.frame(width: gridLength+10, height: gridLength+10).drawingGroup()
+            .onReceive(evolutionTimer) { _ in
+                if self.isEvolving {self.colony.evolve(self.wrap)}
+            }
+            .gesture(DragGesture(minimumDistance: 0)
+                .onChanged { value in
+                    self.onDragAt(point: value.location)
+                })
+ 
             VStack {
                 HStack {
                     Text("Fast")
